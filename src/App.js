@@ -1,26 +1,29 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Medicalfile from './pages/medicalfile';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+      <div>
+      <nav class="navbar navbar-light bg-dark justify-content-center">
+      <span class="navbar-brand font-weight-bolder h-1 text-white">توعية</span>
+      </nav>
+      <br/>
+      <div className="container bg-center">
+       <Router>
+       <switch>
+       <Route path="/medicalfile" component={Medicalfile}/>
+       </switch>
+       </Router>
+      </div>
+      </div>
+    );
 }
 
 export default App;
