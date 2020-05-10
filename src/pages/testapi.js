@@ -21,20 +21,24 @@ class Api extends React.Component
 
   submithandler=(e)=>{
       e.preventDefault();
-     axios.post('http://localhost:8000/api/addsickers',
-       JSON.stringify({
-         ID:'123456789',
-         Blod:'22334445',
-         Allergic:'6677788',
-         Chronic:'3445566'
-        }),
-     )
-       .then(response=>{
-           //alert(response);
-       })
-       .catch(err=>{
-           alert("catch "+err);
-       });
+      try{
+        fetch('http://localhost:8000/api/addsickers',{
+         method:'post',
+         mode:'no-cors',
+         headers:{
+             'Accept':'application/json',
+             'Content-type': 'application/json'
+         },
+         body:JSON.stringify({
+             ID:'123456',
+             Blod:'2343455',
+             Allergic:'234555666',
+             Chronic:'223OOOPPPP'
+         })
+        });
+        }catch(e){
+            alert(e)
+        }
   }
     render(){
     return(
