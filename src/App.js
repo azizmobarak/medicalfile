@@ -2,10 +2,12 @@ import React from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
-  switch,
+  Switch,
   Route,
   Link
 } from "react-router-dom";
+
+import Api from './pages/testapi';
 import Medicalfile from './pages/medicalfile';
 function App() {
     return (
@@ -16,9 +18,10 @@ function App() {
       <br/>
       <div className="container bg-center">
        <Router>
-       <switch>
+       <Switch>
        <Route path="/medicalfile" component={Medicalfile}/>
-       </switch>
+       <Route path="/api" component={Api}/>
+       </Switch>
        </Router>
       </div>
       </div>

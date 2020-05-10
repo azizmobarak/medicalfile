@@ -78,12 +78,11 @@ formvalidation()
     return false;
 }
 //post data to the server
- async senddata(event){
-    event.preventDefault();
-   if(!this.formvalidation())
+  senddata(event){
+  /* if(!this.formvalidation())
     {
     try{
-    let result = fetch('https://getintohome.store/api/addsickers/',{
+    fetch('http://localhost:8000/api/addsickers',{
      method:'post',
      headers:{
          'Accept':'application/json',
@@ -96,11 +95,11 @@ formvalidation()
          Chronic:this.state.chronic_description
      })
     });
-    alert(result);
     }catch(e){
         alert(e)
     }
-    }
+    }*/
+    alert(JSON.stringify(this.state))
     
 }
 ///
