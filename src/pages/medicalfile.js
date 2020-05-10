@@ -10,9 +10,11 @@ class Medicalfile extends React.Component{
           allergicdescription:"لاشيء",
           blod:"",
           code:"",
+          error : 'المرجو اتباع التعليمات'
      }
      this.senddata=this.senddata.bind(this);
      this.onchanged=this.onchanged.bind(this);
+     this.formvalidation=this.formvalidation.bind(this)
 }
 
 //onchanged 
@@ -26,17 +28,17 @@ formvalidation()
 {
     if(this.state.code==null || this.state.code==="" || this.state.code.length<6 )
     {
-        alert("الرمز يجب ان يكون صحيحا المرجو اتباع التعليمات على المربع الاحمر")
+        this.setState({error:"الرمز يجب ان يكون صحيحا المرجو اتباع التعليمات على المربع الاحمر"})
         return true;
     }
     if(this.state.allergic===null ||this.state.allergic==="" || this.state.chronic===null || this.state.chronic==="")
     {
-      alert("المرجو التاكد من اختياركم لاحد الاجابات ب نعم ام لا")
+        this.setState({error:"المرجو التاكد من اختياركم لاحد الاجابات ب نعم ام لا"})
       return true;
     }
     if(this.state.blod===null || this.state.blod==="")
     {
-        alert("المرجو اختيار فصيلة الدم المناسبة")
+        this.setState({error:"المرجو اختيار فصيلة الدم المناسبة"})
         return true;
     }
     return false;
@@ -44,8 +46,8 @@ formvalidation()
 //post data to the server
   senddata(event){
       event.preventDefault();
-   //if(!this.formvalidation())
-    //{
+   if(!this.formvalidation())
+    {
     try{
     fetch('https://getintohome.store/api/addsickers/',{
      method:'post',
@@ -61,18 +63,23 @@ formvalidation()
              Chronic:this.state.chronic+" - "+this.state.chronic_description
      })
     });
-    alert("data goes")
+    document.write('<div style="width:100%;text-align:center;"><div style="background-color:green;color:white"><h3><font size:"20">تم تسجيل طلبكم بنجاح</font></h3></div><br/><a href="/">رجوع<a></div>')
     }catch(e){
         alert(e)
     }
-    //}
+    }
 }
 ///
 render(){
     return(
-        <div className="row">
+        <div className=" justify-content-lg-center w-100">
+        <div className="row justify-content-lg-center">
+        <br/><br/>
         <div className=" col-md-8 justify-content-center">
         <form onSubmit={this.senddata} className="form w-auto">
+        <div id="error" className="card bg-danger text-sm-center w-100">
+        <p className="text-white">{this.state.error}</p>
+        </div>
         <table className="table">
         <tr>
         <td>
@@ -142,21 +149,27 @@ render(){
         </tr>
         </table>
         </form>
+        <br/>
         </div>
+        <br/>
         <div className="col-md-4 text-lg-center text-white">
-        <div className="card bg-danger">
+        <div className="card bg-dark">
+        <h3>هام</h3>
+        <p>بتسجيلك فانت توافق على جميع الشروط و التعليمات المنصوص عليها و التي يمكنك الاطلاع عليها من هنا <a href=""> الخصوصية </a></p>
+        </div>
+        <br/>
+        <div className="card bg-success">
         <h3>ملاحظات</h3>
-        <p>املء الاسمتارة</p>
+        <p>المرجو ادخال رمز لايقل عن 6 احرف</p>
+        <p>المرجو تحديد الاختيارات وملئ الاجابات اذا اقتضت الضرورة</p>
+        <p>اي خطا في الادخال سيتم عرضه على المربع الاحمر</p>
         </div>
         <br/>
         <div className="card bg-primary">
         <h3>ملاحظات</h3>
-        <p>املء الاسمتارة</p>
+        <p>اي معلومات غير صحيحة او مضللة يتحمل صاحبها المسئولية</p>
         </div>
         <br/>
-        <div className="card bg-secondary">
-        <h3>ملاحظات</h3>
-        <p>املء الاسمتارة</p>
         </div>
         </div>
         </div>
