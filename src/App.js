@@ -7,7 +7,7 @@ import {
   Link
 } from "react-router-dom";
 
-import Api from './pages/testapi';
+import Home from './pages/home';
 import Medicalfile from './pages/medicalfile';
 function App() {
     return (
@@ -15,15 +15,15 @@ function App() {
       <nav className="navbar navbar-light bg-dark justify-content-center">
       <span className="navbar-brand font-weight-bolder h-1 text-white">توعية</span>
       </nav>
-      <br/>
-      <div className="container bg-center">
-       <Router>
+      <Router>
        <Switch>
+       <Route exact path="/" component={Home}/>
+      <div className="container bg-center">
+      <br/>
        <Route path="/medicalfile" component={Medicalfile}/>
-       <Route path="/api" component={Api}/>
-       </Switch>
-       </Router>
       </div>
+      </Switch>
+       </Router>
       </div>
     );
 }
