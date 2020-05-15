@@ -8,7 +8,7 @@ constructor(props){
      email :"",
      password :"",
      err:"",
-     data:""
+     data:[]
     }
     this.submithandler=this.submithandler.bind(this);
     this.changehandler=this.changehandler.bind(this);
@@ -39,7 +39,7 @@ async submithandler(e) {
     })
     .then(response=>{
         this.setState({data:response})
-        alert(this.state.data)
+        alert(toString(response.length))
     })
     
     }catch(e){
