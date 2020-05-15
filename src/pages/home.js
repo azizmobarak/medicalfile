@@ -7,13 +7,6 @@ export default class Home extends React.Component{
 render(){
     return(
         <div className="cover h-100 w-100 justify-content-center">
-        <div className="nav nav-pills justify-content-center  bg-dark">
-        <ul className="nav">
-        <li className="nav-item"><a className="nav-link text-white" href="/medicalfile">الملف الطبي</a></li>
-        <li className="nav-item"><a className="nav-link text-white" href="/about">القوانين</a></li>
-        <li className="nav-item"><a className="nav-link text-white" href="#">تحميل تطبيق الهاتف</a></li>
-        </ul>
-        </div>
         <div className="row w-100">
         <div className="col-sm-12 justify-content-center">
         <div className="w-100 text-center py-sm-2">
@@ -29,6 +22,42 @@ render(){
         <h2>تعرف على تطبيق توعية وقم بتحميله للوقاية من فيروس كورونا</h2><br/>
         <button className="btn btn-info py-sm-3">القي نظرة وحمل تطبيق توعية</button>
         </div>
+        </div>
+        </div>
+        <br/>
+        <div style={{marginLeft:"12%"}} className=" row w-75 ">
+        <div className="col-sm-4 text-xl-center">
+        <div className="card w-100">
+         <div className="card-title bg-dark text-white">
+           Title 1
+         </div>
+         <div className="card-body">
+          this is body
+         </div>
+        </div>
+        <br/>
+        </div>
+        <div className="col-sm-4 text-xl-center">
+        <div className="card w-100">
+        <div className="card-title bg-dark text-white">
+          Title 1
+        </div>
+        <div className="card-body">
+         this is body
+        </div>
+       </div>
+       <br/>
+        </div>
+        <div className="col-sm-4 text-xl-center">
+        <div className="card w-100">
+        <div className="card-title bg-dark text-white">
+          Title 1
+        </div>
+        <div className="card-body">
+         this is body
+        </div>
+       </div>
+       <br/>
         </div>
         </div>
         </div>

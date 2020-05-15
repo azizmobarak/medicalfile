@@ -10,7 +10,11 @@ class Medicalfile extends React.Component{
           allergicdescription:"لاشيء",
           blod:"",
           code:"",
-          error : 'المرجو اتباع التعليمات'
+          error : 'المرجو اتباع التعليمات',
+          fullname:"",
+          email :"",
+          password:"",
+          passwordconfiramtion:""
      }
      this.senddata=this.senddata.bind(this);
      this.onchanged=this.onchanged.bind(this);
@@ -29,6 +33,26 @@ formvalidation()
     if(this.state.code==null || this.state.code==="" || this.state.code.length<6 )
     {
         this.setState({error:"الرمز يجب ان يكون صحيحا المرجو اتباع التعليمات على المربع الاحمر"})
+        return true;
+    }
+    if(this.state.fullname==null || this.state.fullname==="")
+    {
+        this.setState({error:"المرجو التاكد من ادخال الاسم الكامل"})
+        return true;
+    }
+    if(this.state.email==null || this.state.email==="")
+    {
+        this.setState({error:"المرجو التاكد من ادخال البريد الالكتروني"})
+        return true;
+    }
+    if(this.state.password==null || this.state.password==="" || this.state.password.length<8)
+    {
+        this.setState({error:"المرجو الناكد من ان كلمة المرور تتجاوز 8 رموز او غير فارغة"})
+        return true;
+    }
+    if(this.state.passwordconfiramtion!=this.state.password)
+    {
+        this.setState({error:"كلمة السر غير متطابقة المرجو اعادة ادخال نفس كلمة السر"})
         return true;
     }
     if(this.state.allergic===null ||this.state.allergic==="" || this.state.chronic===null || this.state.chronic==="")
@@ -60,9 +84,15 @@ formvalidation()
             ID:this.state.code,
              Blod:this.state.blod,
              Allergic:this.state.allergic+" - "+this.state.allergicdescription,
-             Chronic:this.state.chronic+" - "+this.state.chronic_description
+             Chronic:this.state.chronic+" - "+this.state.chronic_description,
+             Fullname:this.state.fullname,
+             Email : this.state.email,
+             Password:this.state.passwordconfiramtion
      })
-    });
+    })
+    .then(response=>{
+        alert(response)
+    })
     document.write('<div style="width:100%;text-align:center;"><div style="background-color:green;color:white"><h3><font size:"20">تم تسجيل طلبكم بنجاح</font></h3></div><br/><a href="/">رجوع<a></div>')
     }catch(e){
         alert(e)
@@ -84,6 +114,30 @@ render(){
         <tr>
         <td>
         <input name="code" value={this.state.code} onChange={this.onchanged} type="text" className="form-control text-lg-right" id="ID" aria-describedby="code identifient" placeholder="ادخل رمزك هنا"/>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <div className="row">
+        <div className="col-sm-6">
+        <input name="email" value={this.state.email} onChange={this.onchanged} type="email" className="form-control text-lg-right" id="email" aria-describedby="email" placeholder="البريد الالكتروني"/>
+        </div>
+        <div className="col-sm-6">
+        <input name="fullname" value={this.state.fullname} onChange={this.onchanged} type="text" className="form-control text-lg-right" id="fullname" aria-describedby="full name" placeholder="الاسم الكامل"/>
+        </div>
+        </div>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <div className="row">
+        <div className="col-sm-6">
+        <input name="passwordconfiramtion" value={this.state.passwordconfiramtion} onChange={this.onchanged} type="password" className="form-control text-lg-right" id="confirmpassword" aria-describedby="password confiramtion" placeholder="اعد ادخال كلمة السر مرة اخرى"/>
+        </div>
+        <div className="col-sm-6">
+        <input name="password" value={this.state.password} onChange={this.onchanged} type="password" className="form-control text-lg-right" id="password" aria-describedby="password" placeholder="ادخل كلمة السر"/>
+        </div>
+        </div>
         </td>
         </tr>
         <tr className=" text-lg-right">
@@ -128,7 +182,7 @@ render(){
         </tr>
         <tr className=" text-right">
         <td>
-        <select value={this.state.blod} name="blod" onChange={this.onchanged} id="blodtype" className="dropdown-item font-weight-bold" placeholder="ماهي فصيلة دمك">
+        <select value={this.state.blod} name="blod" onChange={this.onchanged} id="blodtype" className=" dropdown-header font-weight-bold w-50" placeholder="ماهي فصيلة دمك">
         <option className="text-lg-right">ماهي فصيلة دمك</option>
         <option value="A+ فصيلة">A+ فصيلة</option>
         <option value="A- فصيلة">A- فصيلة</option>
