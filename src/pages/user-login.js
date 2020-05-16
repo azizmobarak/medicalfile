@@ -1,4 +1,6 @@
 import React from 'react';
+import postData from '../methods/postdata';
+import axios from 'axios';
 
 export default class Userlogin extends React.Component{
 
@@ -23,28 +25,34 @@ changehandler=e=>{
 //submit values
 async submithandler(e) {
     e.preventDefault();
-   //http://localhost:8000/api/sickers/user/login/
    try{
    await fetch('http://localhost:8000/api/sickers/user/login/',{
      method:'post',
-     mode:'no-cors',
      headers:{
-         'Accept':'application/json',
-         'Content-type': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
      },
      body:JSON.stringify({
            password:this.state.password,
            email:this.state.email
      })
     })
-    .then(response=>{
-        this.setState({data:response})
-        alert(toString(response.length))
-    })
-    
+    .then(response => {
+        response.json().then(data => {
+            if(data.success=="true")
+            {
+                alert(true);
+            }else
+            {
+                alert("false");
+            }
+        });
+      });
     }catch(e){
-        alert(e)
+        console.log(e)
     }
+   
+    
 }
 
 
