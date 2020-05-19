@@ -1,26 +1,54 @@
 import React from 'react';
+import login from './user-login';
 
 export default class Usermain extends React.Component{
 
     constructor(props){
         super(props);
         this.state={
-        ID:"",
+        ID:localStorage.getItem('ID'),
         Blod:"",
         Allergic:"",
         Chronic:"",
-        email:"",
+        email:'',
         fullname :"",
-        password:""
+        password:"",
+        res :[],
+        laoding:true
         }
     }
 
+  async  componentWillMount(){
+    if(localStorage.getItem('ID')!==''|| localStorage.getItem('ID')!==null){
+      const url =await  fetch('http://localhost:8000/api/sickers/filter/'+this.state.ID+'')
+     const response = await url.json();
+     const data = response;
+     this.setState({
+         email : data[0].Email,
+         fullname:data[0].Fullname,
+         Chronic:data[0].Chronic,
+         Allergic:data[0].Allergic,
+         Blod:data[0].Blod
+     })
+            }
+    }
+
+//empty storage
+ close=()=>{
+ localStorage.removeItem('ID');
+ alert("close");
+}
 
     render(){
+        if(localStorage.getItem('ID')==''|| localStorage.getItem('ID')==null)
+        {
+            alert(localStorage.getItem('ID'))
+            return (<p>login</p>)
+        }
         return(
             <div>
             <nav className="nav navbar-brand text-sm-right w-100">
-            <button className="btn btn-dark">الخروج</button>
+            <button onClick={()=>this.close()} className="btn btn-dark">الخروج</button>
             <button className="btn btn-dark">الرئيسية</button>
             </nav>
             <br/><br/>
@@ -32,36 +60,36 @@ export default class Usermain extends React.Component{
             <form className="form-group py-md-2">
             <div className="row">
             <div className="col-sm-6">
-            <input disabled type="text" name="ID" value={this.state.ID} className=" form-control"/>
+            <input disabled type="text" name="ID" value={this.state.ID} className=" form-control text-right"/>
             </div>
             <div className="col-sm-6">
-            <input type="text" name="fullname" value={this.state.fullname} className=" form-control"/>
+            <input type="text" name="fullname" value={this.state.fullname} className=" form-control text-right"/>
             </div>
             </div>
             <br/>
             <div>
-            <input type="email" name="email" value={this.state.email} className=" form-control"/>
+            <input type="text" name="email" value={this.state.email} className=" form-control text-right"/>
             </div>
             <br/>
             <div>
-            <textarea type="text" name="Allergic" value={this.state.Allergic} className=" form-control"/>
+            <textarea type="text" name="Allergic" value={this.state.Allergic} className=" form-control text-right"/>
             </div>
             <br/>
             <div>
-            <textarea type="text" name="Chronic" value={this.state.Chronic} className=" form-control"/>
+            <textarea type="text" name="Chronic" value={this.state.Chronic} className=" form-control text-right"/>
             </div>
             <br/>
             <div className="w-100">
-            <select value={this.state.Blod} name="Blod" id="blodtype" className=" dropdown-header font-weight-bold w-50" placeholder="ماهي فصيلة دمك">
+            <select value={this.state.Blod}  name="Blod" id="blodtype" className=" dropdown-header font-weight-bold w-50 text-right" placeholder="ماهي فصيلة دمك">
             <option className="text-lg-right">ماهي فصيلة دمك</option>
-            <option value="A+ فصيلة">A+ فصيلة</option>
-            <option value="A- فصيلة">A- فصيلة</option>
-            <option value="AB+ فصيلة">AB+ فصيلة</option>
-            <option value="AB- فصيلة">AB- فصيلة</option>
-            <option value="O+ فصيلة">O+ فصيلة</option>
-            <option value="O- فصيلة">O- فصيلة</option>
-            <option value="B+ فصيلة">B+ فصيلة</option>
-            <option value="B- فصيلة">B- فصيلة</option>
+            <option value="A+">A+ فصيلة</option>
+            <option value="A-">A- فصيلة</option>
+            <option value="AB+">AB+ فصيلة</option>
+            <option value="AB-">AB- فصيلة</option>
+            <option value="O+">O+ فصيلة</option>
+            <option value="O-">O- فصيلة</option>
+            <option value="B+">B+ فصيلة</option>
+            <option value="B-">B- فصيلة</option>
             </select>
             </div>
             <br/>
@@ -89,7 +117,9 @@ export default class Usermain extends React.Component{
             </form>
             </div><br/>
             </div>
+            
             </div>
+        
         )
     }
 }

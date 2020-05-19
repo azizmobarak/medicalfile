@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-
+import center from './methods/centerState';
 import {
   BrowserRouter as Router,
   Switch,
@@ -35,6 +35,7 @@ function App() {
        <Route path="/medicalfile" component={Medicalfile}/>
        <Route path="/userlogin" component={Userlogin}/>
        <Route path="/main" component={Usermain}/>
+       <Route path="/test" component={center}/>
       </div>
       </Switch>
        </Router>

@@ -184,14 +184,14 @@ render(){
         <td>
         <select value={this.state.blod} name="blod" onChange={this.onchanged} id="blodtype" className=" dropdown-header font-weight-bold w-50" placeholder="ماهي فصيلة دمك">
         <option className="text-lg-right">ماهي فصيلة دمك</option>
-        <option value="A+ فصيلة">A+ فصيلة</option>
-        <option value="A- فصيلة">A- فصيلة</option>
-        <option value="AB+ فصيلة">AB+ فصيلة</option>
-        <option value="AB- فصيلة">AB- فصيلة</option>
-        <option value="O+ فصيلة">O+ فصيلة</option>
-        <option value="O- فصيلة">O- فصيلة</option>
-        <option value="B+ فصيلة">B+ فصيلة</option>
-        <option value="B- فصيلة">B- فصيلة</option>
+        <option value="A+">A+ فصيلة</option>
+        <option value="A-">A- فصيلة</option>
+        <option value="AB+">AB+ فصيلة</option>
+        <option value="AB-">AB- فصيلة</option>
+        <option value="O+">O+ فصيلة</option>
+        <option value="O-">O- فصيلة</option>
+        <option value="B+">B+ فصيلة</option>
+        <option value="B-">B- فصيلة</option>
         </select><br/>
         </td>
         </tr>
