@@ -1,30 +1,19 @@
 import React,{useState} from 'react';
 import {Redirect} from 'react-router-dom';
-import {useSelector,useDispatch} from 'react-redux';
-import useraction from '../reducer/actions';
-import { store } from '..';
-import { sessionreducer } from '../reducer/session';
-
 
 const Userlogin =()=>{
 
 const [email,setemail]= useState("");
 const [password,setpassword]= useState("");
 const [err,seterr]= useState("");
-const [success,setsuccess]= useState("");
 
-const user = useSelector(state=>state.user);
-
-const dispatcher = useDispatch();
 //get values
 const changehandleremail=e=>{
     setemail(e.target.value);
-        localStorage.setItem('email',e.target.value);
 }
 const changehandlerpassword=e=>{
     setpassword(e.target.value);
 }
-
 
 //submit values
 const submithandler=(e)=> {
@@ -45,15 +34,12 @@ const submithandler=(e)=> {
                                     {
                             response.json().then(data => 
                                 {
-                              setsuccess(data.success);
-                               console.log(success)
+                             
                                if(data.success=="true")
                                 {
-                            localStorage.setItem('ID',data.ID);
-                            alert(localStorage.getItem('ID'))
+                            sessionStorage.setItem('ID',data.ID);
+                            window.location.reload();
                             seterr("");
-                            alert("true")
-                           
                                  }
                         else
                                  {
@@ -68,15 +54,17 @@ const submithandler=(e)=> {
                  }
 }
 
-const test=()=>{
-    dispatcher(useraction());
+if(sessionStorage.getItem('ID')!=null)
+{
+    return (<Redirect to="/main"/>)
 }
+else{
     return(
         <div className="row">
         <div className="col-sm-8 px-xl-5 text-xl-center">
         <div className="h2">تسجيل الدخول</div>
         <br/><br/>
-        <h3 className="text-danger"></h3>
+        <h3 className="text-danger">{err}</h3>
         <form onSubmit={submithandler} className="form w-100 py-sm-4">
         <div className="w-100 py-lg-2">
         <input type="text" name="email" value={email} onChange={changehandleremail} className="form-control text-xl-right" placeholder="الايميل او رقم المستعمل"/>
@@ -117,7 +105,7 @@ const test=()=>{
         </div>
         </div>
         </div>
-    )
+    )}
 }
 
 

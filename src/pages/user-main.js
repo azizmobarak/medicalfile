@@ -1,12 +1,16 @@
 import React from 'react';
 import login from './user-login';
+import {Redirect} from 'react-router-dom';
+import {Dispatch} from 'redux';
+import {connect, useDispatch} from 'react-redux';
+import {useraction} from '../actions/useraction';
 
-export default class Usermain extends React.Component{
+ class Usermain extends React.Component{
 
     constructor(props){
         super(props);
         this.state={
-        ID:localStorage.getItem('ID'),
+        ID:sessionStorage.getItem('ID'),
         Blod:"",
         Allergic:"",
         Chronic:"",
@@ -14,7 +18,8 @@ export default class Usermain extends React.Component{
         fullname :"",
         password:"",
         res :[],
-        laoding:true
+        laoding:true,
+        user:props.User
         }
     }
 
@@ -33,23 +38,46 @@ export default class Usermain extends React.Component{
             }
     }
 
-//empty storage
- close=()=>{
- localStorage.removeItem('ID');
- alert("close");
-}
-
-    render(){
-        if(localStorage.getItem('ID')==''|| localStorage.getItem('ID')==null)
+updatedata=()=>{
+const url = fetch('http://localhost:8000/api/sickers/update/user/',
+{
+    method:'put',
+    headers:{
+        'Accept': 'application/json',
+         'Content-Type': 'application/json',
+        },
+    body:JSON.stringify(
         {
-            alert(localStorage.getItem('ID'))
-            return (<p>login</p>)
+            ID:sessionStorage.getItem('ID'),
+            email :this.state.email,
+            fullname:this.state.fullname,
+            Chronic:this.state.Chronic,
+            Allergic:this.state.Allergic,
+            Blod:this.state.Blod
+        }
+    )
+}
+)
+const response = url.json();
+const data = response;
+console.log('updateed  '+data);
+}
+ 
+//change values
+onchanged= event =>{
+    this.setState({
+        [event.target.name]:event.target.value
+    });
+    }
+
+render(){
+        if(sessionStorage.getItem('ID')==''|| sessionStorage.getItem('ID')==null)
+        {
+            return (<Redirect to="/userlogin"/>)
         }
         return(
             <div>
             <nav className="nav navbar-brand text-sm-right w-100">
-            <button onClick={()=>this.close()} className="btn btn-dark">الخروج</button>
-            <button className="btn btn-dark">الرئيسية</button>
             </nav>
             <br/><br/>
             <div className="row">
@@ -57,30 +85,30 @@ export default class Usermain extends React.Component{
             <div>
             <h1 className="h1">تحديث المعطيات الشخصية</h1>
             </div><br/>
-            <form className="form-group py-md-2">
+            <form onSubmit={this.updatedata} className="form-group py-md-2">
             <div className="row">
             <div className="col-sm-6">
             <input disabled type="text" name="ID" value={this.state.ID} className=" form-control text-right"/>
             </div>
             <div className="col-sm-6">
-            <input type="text" name="fullname" value={this.state.fullname} className=" form-control text-right"/>
+            <input onChange={this.onchanged} type="text" name="fullname" value={this.state.fullname} className=" form-control text-right"/>
             </div>
             </div>
             <br/>
             <div>
-            <input type="text" name="email" value={this.state.email} className=" form-control text-right"/>
+            <input onChange={this.onchanged}  type="text" name="email" value={this.state.email} className=" form-control text-right"/>
             </div>
             <br/>
             <div>
-            <textarea type="text" name="Allergic" value={this.state.Allergic} className=" form-control text-right"/>
+            <textarea onChange={this.onchanged}  type="text" name="Allergic" value={this.state.Allergic} className=" form-control text-right"/>
             </div>
             <br/>
             <div>
-            <textarea type="text" name="Chronic" value={this.state.Chronic} className=" form-control text-right"/>
+            <textarea onChange={this.onchanged}  type="text" name="Chronic" value={this.state.Chronic} className=" form-control text-right"/>
             </div>
             <br/>
             <div className="w-100">
-            <select value={this.state.Blod}  name="Blod" id="blodtype" className=" dropdown-header font-weight-bold w-50 text-right" placeholder="ماهي فصيلة دمك">
+            <select onChange={this.onchanged}  value={this.state.Blod}  name="Blod" id="blodtype" className=" dropdown-header font-weight-bold w-50 text-right" placeholder="ماهي فصيلة دمك">
             <option className="text-lg-right">ماهي فصيلة دمك</option>
             <option value="A+">A+ فصيلة</option>
             <option value="A-">A- فصيلة</option>
@@ -94,7 +122,7 @@ export default class Usermain extends React.Component{
             </div>
             <br/>
             <div className=" text-xl-center">
-            <button className="btn btn-outline-primary">تحديث المعطيات</button>
+            <button type='submit' className="btn btn-outline-primary">تحديث المعطيات</button>
             </div>
             </form>
             </div>
@@ -123,3 +151,12 @@ export default class Usermain extends React.Component{
         )
     }
 }
+
+
+const mapToPropsState=(state)=>{
+  return {
+      user:state.User,
+  }
+}
+
+export default connect(mapToPropsState)(Usermain);

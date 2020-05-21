@@ -30,22 +30,22 @@ onchanged= event =>{
 
 formvalidation()
 {
-    if(this.state.code==null || this.state.code==="" || this.state.code.length<6 )
+    if(this.state.code===null || this.state.code==="" || this.state.code.length<6 )
     {
         this.setState({error:"الرمز يجب ان يكون صحيحا المرجو اتباع التعليمات على المربع الاحمر"})
         return true;
     }
-    if(this.state.fullname==null || this.state.fullname==="")
+    if(this.state.fullname===null || this.state.fullname==="")
     {
         this.setState({error:"المرجو التاكد من ادخال الاسم الكامل"})
         return true;
     }
-    if(this.state.email==null || this.state.email==="")
+    if(this.state.email===null || this.state.email==="")
     {
         this.setState({error:"المرجو التاكد من ادخال البريد الالكتروني"})
         return true;
     }
-    if(this.state.password==null || this.state.password==="" || this.state.password.length<8)
+    if(this.state.password===null || this.state.password==="" || this.state.password.length<8)
     {
         this.setState({error:"المرجو الناكد من ان كلمة المرور تتجاوز 8 رموز او غير فارغة"})
         return true;
@@ -73,9 +73,8 @@ formvalidation()
    if(!this.formvalidation())
     {
     try{
-    fetch('https://getintohome.store/api/addsickers/',{
+    fetch('http://localhost:8000/api/sickers/new',{
      method:'post',
-     mode:'no-cors',
      headers:{
          'Accept':'application/json',
          'Content-type': 'application/json'
@@ -90,19 +89,32 @@ formvalidation()
              Password:this.state.passwordconfiramtion
      })
     })
-    .then(response=>{
-        alert(response)
-    })
+    .then(response=>response.json()
+     .then(data=>{
+         if(data[0].err=="emailerr")
+         {
+             alert("email exist")
+         }
+     })
+    )
     document.write('<div style="width:100%;text-align:center;"><div style="background-color:green;color:white"><h3><font size:"20">تم تسجيل طلبكم بنجاح</font></h3></div><br/><a href="/">رجوع<a></div>')
     }catch(e){
         alert(e)
     }
     }
 }
+
+//lanched window for register
+window=()=>(
+    <div  className="card text-xl-center text-success">
+    <h1>لقد تم تسجيلكم بنجاح</h1>
+    </div>
+)
 ///
 render(){
     return(
         <div className=" justify-content-lg-center w-100">
+        {this.window}
         <div className="row justify-content-lg-center">
         <br/><br/>
         <div className=" col-md-8 justify-content-center">
