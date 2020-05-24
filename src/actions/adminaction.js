@@ -6,4 +6,4 @@ const adminaction = (user, password) => {
     }
 }
 
-export default doctoraction;
+export default adminaction;

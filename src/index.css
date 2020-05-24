@@ -1,16 +1,5 @@
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-.background {
-    background-color: #26316D;
 }
 
 .cover {
@@ -18,4 +7,21 @@ code {
     width: auto;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    background-color: #e7e4db;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.login-color {
+    background-color: #e4dcc7;
+}
+
+.login-hoverlink>ul :hover {
+    display: "block";
 }
