@@ -60,13 +60,13 @@ if(sessionStorage.getItem('ID')!=null)
 }
 else{
     return(
-        <div className="row">
+        <div className="row medicalfil-cover">
         <div className="col-sm-8 px-xl-5 text-center">
         <br/>
         <div className="h2">تسجيل الدخول</div>
         <br/>
         <div className="text-danger">{err}</div>
-        <form onSubmit={submithandler} className="form w-100 py-sm-4 login-color">
+        <form onSubmit={submithandler} className="form w-100 py-sm-4 bg-transparent">
         <div className="row w-100 py-lg-2">
         <div className="col-2 h3">
         <i className="fas fa-user"></i>

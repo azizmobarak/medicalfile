@@ -47,8 +47,8 @@ if(sessionStorage.getItem('doctor')!==null)
 {
     return(
         <div>
-        <div className="nav navbar">
-        <button onClick={()=>signout()} className="btn btn-dark">اغلاق</button>
+        <div className="nav navbar w-100 justify-content-end">
+        <button onClick={()=>signout()} className="btn btn-dark"><i className="fas fa-power-off"></i></button>
         </div>
         <div className="row">
        <div className="col-sm-3"></div>

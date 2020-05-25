@@ -154,12 +154,12 @@ document.addEventListener('click',()=>{
     }catch{}
 })
     return(
-        <div className=" justify-content-lg-center w-100">
+        <div className=" justify-content-lg-center w-100 medicalfil-cover h6">
         <div className="row justify-content-lg-center text-center">
         <br/><br/>
         {this.window}
         <div className=" col-md-8 justify-content-center">
-        <form onSubmit={this.senddata} className="form w-auto login-color">
+        <form onSubmit={this.senddata} className="form w-auto bg-transparent">
         <div id="error" className="card bg-danger text-center w-100">
         <p className="text-white">{this.state.error}</p>
         </div>
@@ -198,14 +198,14 @@ document.addEventListener('click',()=>{
         <tr className=" text-right">
         <td>
         <p>هل تعاني من مرض مزمن؟</p>
-        <div onChange={this.onchanged} className="row">
+        <div onChange={this.onchanged} className="row bg-white">
         <div className="col-4">
         <label>نعم</label>
-        <input onClick={()=>document.getElementById('chronic').style.display="block"} value="نعم اعاني من مرض مزمن" name="chronic"  type="radio" />
+        <input className="w-25" style={{fontSize:"30px"}} onClick={()=>document.getElementById('chronic').style.display="block"} value="نعم اعاني من مرض مزمن" name="chronic"  type="radio" />
         </div>
         <div className="col-4">
         <label>لا</label>
-        <input onClick={()=>document.getElementById('chronic').style.display="none"}  value="لا اعاني من مرض مزمن" name="chronic" type="radio" />
+        <input className="w-25" onClick={()=>document.getElementById('chronic').style.display="none"}  value="لا اعاني من مرض مزمن" name="chronic" type="radio" />
         </div>
         </div>
         </td>
@@ -218,14 +218,14 @@ document.addEventListener('click',()=>{
         <tr className="text-right">
         <td>
         <p>هل تعاني من حساسية؟ </p>
-        <div onChange={this.onchanged} className="row">
+        <div onChange={this.onchanged} className="row bg-white">
         <div className="col-4">
         <label>نعم</label>
-        <input onClick={()=>document.getElementById('allergic').style.display="block"} value="نعم اعاني من حساسية" name="allergic" type="radio" />
+        <input className="w-25" onClick={()=>document.getElementById('allergic').style.display="block"} value="نعم اعاني من حساسية" name="allergic" type="radio" />
         </div>
         <div className="col-4">
         <label>لا</label>
-        <input onClick={()=>document.getElementById('allergic').style.display="none"} value="لا اعاني من حساسية" name="allergic" type="radio" />
+        <input className="w-25" onClick={()=>document.getElementById('allergic').style.display="none"} value="لا اعاني من حساسية" name="allergic" type="radio" />
         </div>
         </div>
         </td>
@@ -237,7 +237,8 @@ document.addEventListener('click',()=>{
         </tr>
         <tr className="text-center">
         <td className="w-100">
-        <select value={this.state.blod} name="blod" onChange={this.onchanged} id="blodtype" className=" dropdown-header font-weight-bold w-50" placeholder="ماهي فصيلة دمك">
+        <div className="w-100">
+        <select style={{marginLeft:"50%"}} value={this.state.blod} name="blod" onChange={this.onchanged} id="blodtype" className=" dropdown-header font-weight-bold w-50" placeholder="ماهي فصيلة دمك">
         <option className="text-lg-right">ماهي فصيلة دمك</option>
         <option value="A+">A+ فصيلة</option>
         <option value="A-">A- فصيلة</option>
@@ -247,13 +248,15 @@ document.addEventListener('click',()=>{
         <option value="O-">O- فصيلة</option>
         <option value="B+">B+ فصيلة</option>
         <option value="B-">B- فصيلة</option>
-        </select><br/>
+        </select>
+        </div>
+        <br/>
         </td>
         </tr>
         <tr className="text-center">
         <td>
         <br/>
-        <input className="btn btn-outline-success w-50" type="submit" value="حفظ البيانات"/>
+        <input className="btn btn-success w-50" type="submit" value="حفظ البيانات"/>
         </td>
         </tr>
         </table>

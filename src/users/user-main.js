@@ -23,7 +23,9 @@ import {useraction} from '../actions/useraction';
         res :[],
         laoding:true,
         user:props.User,
-        err:''
+        err:'',
+        updateinforsuccess:"",
+        updatepasswordsuccess:""
         }
     }
 
@@ -54,40 +56,47 @@ import {useraction} from '../actions/useraction';
 //update user data
 updatedata=(e)=>{
     e.preventDefault();
-const url = fetch('http://localhost:8000/api/sickers/update/user/',
-{
-    method:'put',
-    mode:'cors',
-    headers:{
-        'Accept': 'application/json',
-         'Content-Type': 'application/json',
-         'authorization':sessionStorage.getItem('ID')
-        },
-    body:JSON.stringify(
-        {
-            email :this.state.email,
-            fullname:this.state.fullname,
-            Chronic:this.state.Chronic,
-            Allergic:this.state.Allergic,
-            Blod:this.state.Blod
-        }
+   try{
+    const url = fetch('http://localhost:8000/api/sickers/update/user/',
+    {
+        method:'put',
+        mode:'cors',
+        headers:{
+            'Accept': 'application/json',
+             'Content-Type': 'application/json',
+             'authorization':sessionStorage.getItem('ID')
+            },
+        body:JSON.stringify(
+            {
+                email :this.state.email,
+                fullname:this.state.fullname,
+                Chronic:this.state.Chronic,
+                Allergic:this.state.Allergic,
+                Blod:this.state.Blod
+            }
+        )
+    }
     )
-}
-)
-const response = url;
-const data = response;
-console.log('updateed  '+data);
+    const response = url;
+    const data = response;
+    console.log('updateed  '+data);
+    this.setState({updateinforsuccess:"تم تحديث المعلومات بنجاح"});
+    setTimeout(()=>{
+        this.setState({updateinforsuccess:""})
+    },4000)
+   }catch{
+     this.setState({
+   updateinforsuccess:"فشل في التحديث المرجو الابلاغ عن المشكلة او الاعادة لاحقا"
+     })
+   }
 }
 
 //update password 
 updatepassword=(e)=>{
-
-alert(this.state.password+'\n'+this.state.passwordconfirm+'\n'+this.state.passwordnew)
-
     e.preventDefault();
+   try{
     if(this.passwordverification()===true)
     {
-        alert('get')
 const url = fetch('http://localhost:8000/api/sickers/update/password/',
 {
     method:'put',
@@ -107,8 +116,16 @@ const url = fetch('http://localhost:8000/api/sickers/update/password/',
 )
 const response = url;
 const data = response;
-console.log('updateed  '+data);
+this.setState({updatepasswordsuccess:"لقد تم تغيير كلمة المرور بنجاح"})
+setTimeout(() => {
+    this.setState({updatepasswordsuccess:""})
+}, 4000);
     }
+   }catch{
+   this.setState({
+       updatepasswordsuccess:"لم يتم تحديث كلمة المرور المرجو الابلاغ عن مشكلة او الاعادة لاحقا"
+   })
+   }
 }
  
 //change values
@@ -155,6 +172,9 @@ render(){
             <h1 className="h1">تحديث المعطيات الشخصية</h1>
             </div><br/>
             <form onSubmit={this.updatedata} className="form-group py-md-2">
+            <div>
+            <p className="h6 bg-success text-white">{this.state.updateinforsuccess}</p>
+            </div>
             <div className="row">
             <div className="col-sm-6">
             <input disabled type="text" name="ID" value={this.state.ID} className=" form-control text-right"/>
@@ -201,6 +221,9 @@ render(){
             <h1 className="h1">تحديث كلمة المرور</h1>
             <br/>
             <form onSubmit={this.updatepassword} className="form-group">
+            <div>
+            <p className="bg-success text-white h6">{this.state.updatepasswordsuccess}</p>
+            </div>
             <p className="text-danger">{this.state.err}</p><br/>
             <div>
             <input name="password" value={this.state.password} onChange={this.onchanged} type="password" className="form-control text-sm-right" placeholder="كلمة السر السابقة"/>

@@ -3,7 +3,14 @@ code {
 }
 
 .cover {
-    background-image: url('./cover.jpeg');
+    background-image: url('./cover1.svg');
+    width: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.medicalfil-cover {
+    background-image: url('./cover3.svg');
     width: auto;
     background-repeat: no-repeat;
     background-size: cover;
@@ -19,7 +26,7 @@ body {
 }
 
 .login-color {
-    background-color: #e4dcc7;
+    background-color: #d3d2cf;
 }
 
 .login-hoverlink>ul :hover {

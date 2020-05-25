@@ -75,12 +75,12 @@ const submithandler=(e)=> {
 else{
     return (
         <div>
-        <div className="row">
+        <div className="row medicalfil-cover">
          <div className="col-sm-3"></div>
          <div className="col-sm-5">
          <br/>
          <h2 className="text-center text-primary">لوحة التحكم</h2>
-         <form onSubmit={submithandler} className="form w-100 py-sm-4 text-center login-color">
+         <form onSubmit={submithandler} className="form w-100 py-sm-4 text-center bg-transparent">
          <br/>
          <div className="text-danger">{err}</div>
          <br/>

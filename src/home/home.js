@@ -31,43 +31,6 @@ const Home=()=>{
         </div>
         </div>
         <br/>
-        <div style={{marginLeft:"12%"}} className=" row w-75 ">
-        <div className="col-sm-4 text-xl-center">
-        <div className="card w-100">
-         <div className="card-title bg-dark text-white">
-           Title 1
-         </div>
-         <div className="card-body">
-          this is body
-         </div>
-        </div>
-        <br/>
-        </div>
-        <div className="col-sm-4 text-xl-center">
-        <div className="card w-100">
-        <div className="card-title bg-dark text-white">
-          Title 1
-        </div>
-        <div className="card-body">
-         this is body
-        </div>
-       </div>
-       <br/>
-        </div>
-        <div className="col-sm-4 text-xl-center">
-        <div className="card w-100">
-        <div className="card-title bg-dark text-white">
-          Title 1
-        </div>
-        <div className="card-body">
-         this is body
-        </div>
-       </div>
-       <br/>
-       <div className="box"></div>
-     
-        </div>
-        </div>
         </div>
     )
 
