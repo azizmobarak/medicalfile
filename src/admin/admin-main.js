@@ -28,16 +28,16 @@ return(
     <div>
     <br/>
     <div className="row w-100">
-    <div className="col-sm-1 bg-dark text-center">
-    <ul className="list-group">
-    <li className="py-4"><button onClick={()=>setroot('tableuser')} className='btn btn-dark w-100'><i style={{fontSize:"25px"}} className="fas fa-users"></i></button></li>
-    <li className="py-4"><button onClick={()=>setroot('addnew')} className='btn btn-dark w-100'><i style={{fontSize:"25px"}} className="fas fa-file-medical"></i></button></li>
-    <li className="py-4"><button className='btn btn-dark w-100'><i style={{fontSize:"25px"}} className="fas fa-database"></i></button></li>
-    <li className="py-4"><button className='btn btn-dark w-100'><i style={{fontSize:"25px"}} className="fas fa-hand-holding-medical"></i></button></li>
-    <li className="py-4"><button onClick={()=>logout()} className='btn btn-dark w-100'><i style={{fontSize:"25px"}} className="fas fa-lock"></i></button></li>
+    <div className="col-sm-2 text-center ">
+    <ul className="list-group w-100">
+    <li className="py-4 list-group-item w-100 admin-list"><button onClick={()=>setroot('tableuser')} className='btn btn-dark w-100'><i style={{fontSize:"25px"}} className="fas fa-users"></i></button></li>
+    <li className="py-4 list-group-item w-100 admin-list"><button onClick={()=>setroot('addnew')} className='btn btn-dark w-100'><i style={{fontSize:"25px"}} className="fas fa-file-medical"></i></button></li>
+    <li className="py-4 list-group-item w-100 admin-list"><button className='btn btn-dark w-100'><i style={{fontSize:"25px"}} className="fas fa-database"></i></button></li>
+    <li className="py-4 list-group-item w-100 admin-list"><button className='btn btn-dark w-100'><i style={{fontSize:"25px"}} className="fas fa-hand-holding-medical"></i></button></li>
+    <li className="py-4 list-group-item w-100 admin-list"><button onClick={()=>logout()} className='btn btn-dark w-100'><i style={{fontSize:"25px"}} className="fas fa-power-off"></i></button></li>
     </ul>
     </div>
-    <div className="col-sm-11 text-center justify-content-center">
+    <div className="col-sm-10 w-100 text-center justify-content-center">
     {changeroots(root)}
     </div>
     </div>

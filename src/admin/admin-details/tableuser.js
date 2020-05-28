@@ -34,7 +34,7 @@ setfullname(e.target.value);
 const onchange=async(e)=>{
 setkey(e.target.value);
 settab([]);
- const url =await  fetch('http://localhost:8000/api/sickers/filter/'+e.target.value+'',{
+ const url =await  fetch('http://localhost:8000/api/sickers/admin/filter/'+e.target.value+'',{
      headers:{
          'authorization':sessionStorage.getItem('admin')
      }
@@ -45,6 +45,18 @@ settab([]);
      setid(data[0].ID)
 }
 
+//select check item from list 
+const check=async(id)=>{
+  const url =await  fetch('http://localhost:8000/api/sickers/admin/filter/'+id+'',{
+     headers:{
+         'authorization':sessionStorage.getItem('admin')
+     }
+ })
+     const response = await url.json();
+     const data = response;
+     settab(data);
+     setid(data[0].ID)
+}
 
 //show and hide edited row
 const updatebtnclick=()=>{
@@ -164,6 +176,7 @@ const rows=tab.map((item)=>{
   <td>{item.Allergic}</td>
   <td>{item.Chronic}</td>
   <td>{item.Blod}</td>
+  <td><button onClick={()=>check(item.ID)} className="btn btn-primary"><i className="fas fa-check-circle"></i></button></td>
   </tr>
   </table>
   </div>
@@ -172,7 +185,7 @@ const rows=tab.map((item)=>{
 
     return(
         <div className="justify-content-center">
-        <input onChange={onchange} style={{marginLeft:"35%"}} className="input-group text-right w-25 px-4 rounded-0" placeholder="البحث" />
+        <input value={key} onChange={onchange} style={{marginLeft:"35%"}} className="input-group text-right w-25 px-4 rounded-0" placeholder="البحث" />
         <br/>
         {key==='' ? 
         <div>

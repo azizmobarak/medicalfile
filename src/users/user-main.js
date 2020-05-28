@@ -1,17 +1,12 @@
 import React from 'react';
-import login from './user-login';
 import {Redirect} from 'react-router-dom';
-import {Dispatch} from 'redux';
-import {connect, useDispatch} from 'react-redux';
-import {useraction} from '../actions/useraction';
 
 
  class Usermain extends React.Component{
 
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state={
-        ID:sessionStorage.getItem('ID'),
         Blod:"",
         Allergic:"",
         Chronic:"",
@@ -22,7 +17,7 @@ import {useraction} from '../actions/useraction';
         passwordnew:'',
         res :[],
         laoding:true,
-        user:props.User,
+        user:'',
         err:'',
         updateinforsuccess:"",
         updatepasswordsuccess:""
@@ -30,8 +25,9 @@ import {useraction} from '../actions/useraction';
     }
 
   async  componentWillMount(){
-    if(localStorage.getItem('ID')!==null){
-      const url =await  fetch('http://localhost:8000/api/sickers/users/currentuser',
+
+    if(sessionStorage.getItem('ID')!==null){
+      const url =await  fetch('http://localhost:8000/api/sickers/users/currentuser/',
       {
           headers:{
               'Content-type':'json/application',
@@ -39,9 +35,9 @@ import {useraction} from '../actions/useraction';
           }
       }
       )
-       console.log(sessionStorage.getItem('ID'))
      const response = await url.json();
      const data = response;
+     console.log(data)
      this.setState({
          email : data[0].Email,
          fullname:data[0].Fullname,
@@ -157,7 +153,7 @@ passwordverification=()=>{
 }
 
 render(){
-        if(sessionStorage.getItem('ID')==''|| sessionStorage.getItem('ID')==null)
+        if(sessionStorage.getItem('ID')===''|| sessionStorage.getItem('ID')===null)
         {
             return (<Redirect to="/userlogin"/>)
         }
@@ -177,7 +173,6 @@ render(){
             </div>
             <div className="row">
             <div className="col-sm-6">
-            <input disabled type="text" name="ID" value={this.state.ID} className=" form-control text-right"/>
             <br/>
             </div>
             <div className="col-sm-6">
@@ -248,10 +243,4 @@ render(){
 }
 
 
-const mapToPropsState=(state)=>{
-  return {
-      user:state.User,
-  }
-}
-
-export default connect(mapToPropsState)(Usermain);
+export default Usermain;

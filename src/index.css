@@ -32,3 +32,36 @@ body {
 .login-hoverlink>ul :hover {
     display: "block";
 }
+
+.nav-text-hover :hover {
+    background-color: #242121;
+    color: white;
+}
+
+.footerspecific {
+    background-color: #979393;
+}
+
+.admin-list {
+    background-color: #e7e4db;
+    border-color: #e7e4db;
+}
+
+.admin-list:hover {
+    background-color: #c2bcbc;
+}
+
+.secondnavbarcolor {
+    background-color: ivory;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    transition: 1s;
+    box-shadow: #c2bcbc;
+}
+
+.chatbtn {
+    position: fixed;
+    font-size: 50px;
+    margin-bottom: 10%;
+}

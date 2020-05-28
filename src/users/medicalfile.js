@@ -9,11 +9,11 @@ class Medicalfile extends React.Component{
           allergic:"",
           allergicdescription:"لاشيء",
           blod:"",
-          code:"",
-          error : 'المرجو اتباع التعليمات',
+          error :'',
           fullname:"",
           email :"",
           password:"",
+          phonenumber:'',
           passwordconfiramtion:""
      }
      this.senddata=this.senddata.bind(this);
@@ -30,10 +30,16 @@ onchanged= event =>{
 
 formvalidation()
 {
-    if(this.state.code===null || this.state.code==="" || this.state.code.length<6 )
+    if(this.state.phonenumber.substr(0,2)!=='06' && this.state.phonenumber.substr(0,2)!=='07')
     {
-        this.setState({error:"الرمز يجب ان يكون صحيحا المرجو اتباع التعليمات على المربع الاحمر"})
+        alert(this.state.phonenumber.substr(0,2))
+        this.setState({error:"المرجو ادخال 06 او 07 في اول الرقم"})
         return true;
+    }
+    if(this.state.phonenumber===null || this.state.phonenumber==="" || this.state.phonenumber.length!==10 )
+    {
+        this.setState({error:"يجب على رقم الهاتف ان يتكون من عشرة ارقام"})
+      return true;
     }
     if(this.state.fullname===null || this.state.fullname==="")
     {
@@ -55,7 +61,7 @@ formvalidation()
         this.setState({error:"كلمة السر غير متطابقة المرجو اعادة ادخال نفس كلمة السر"})
         return true;
     }
-    if(this.state.allergic===null ||this.state.allergic==="" || this.state.chronic===null || this.state.chronic==="")
+    if(this.state.allergic===null || this.state.allergic==="" || this.state.chronic===null || this.state.chronic==="")
     {
         this.setState({error:"المرجو التاكد من اختياركم لاحد الاجابات ب نعم ام لا"})
       return true;
@@ -80,28 +86,30 @@ formvalidation()
          'Content-type': 'application/json'
      },
      body:JSON.stringify({
-            ID:this.state.code,
              Blod:this.state.blod,
              Allergic:this.state.allergic+" - "+this.state.allergicdescription,
              Chronic:this.state.chronic+" - "+this.state.chronic_description,
              Fullname:this.state.fullname,
              Email : this.state.email,
-             Password:this.state.passwordconfiramtion
+             Password:this.state.passwordconfiramtion,
+             phonenumber:this.state.phonenumber
      })
     })
     .then(response=>
     response.json().then(data=>{
          console.log(data)
-         if(data.err=="emailerr")
-         {
-             alert("email exist")
-         }
-         if(data.success=='true')
+         if(data.success==='true')
          {
             document.getElementById('window').style.display="block";
          }
          else{
-             alert('somethingelese')
+            if(data.err==="emailerror")
+            {
+                alert("email exist")
+                this.setState({error:"البريد الالكتروني موجود سابقا"})
+            }else{
+                this.setState({error:'المرجو الاعادة لاحقا او الابلاغ عن مشكلة'})
+            }
          }
      })
     )
@@ -131,7 +139,6 @@ empty(){
         allergic:"",
         allergicdescription:"لاشيء",
         blod:"",
-        code:"",
         error : 'المرجو اتباع التعليمات',
         fullname:"",
         email :"",
@@ -160,13 +167,15 @@ document.addEventListener('click',()=>{
         {this.window}
         <div className=" col-md-8 justify-content-center">
         <form onSubmit={this.senddata} className="form w-auto bg-transparent">
+        {this.state.error==''? <p></p> :
         <div id="error" className="card bg-danger text-center w-100">
         <p className="text-white">{this.state.error}</p>
-        </div>
+        </div>}
         <table className="table">
+        <tbody>
         <tr>
         <td>
-        <input name="code" value={this.state.code} onChange={this.onchanged} type="text" className="form-control text-right" id="ID" aria-describedby="code identifient" placeholder="ادخل رمزك هنا"/>
+        <input name="phonenumber" value={this.state.phonenumber} onChange={this.onchanged} className="w-100 form-control text-right" placeholder=" المرجو ادخال  رقم للهاتف : سيتم ارسال رمزكم عبر رسالة قصيرة الى لرقم الذي تدخلونه" />
         </td>
         </tr>
         <tr>
@@ -259,6 +268,7 @@ document.addEventListener('click',()=>{
         <input className="btn btn-success w-50" type="submit" value="حفظ البيانات"/>
         </td>
         </tr>
+        </tbody>
         </table>
         </form>
         <br/>

@@ -34,101 +34,121 @@ function App() {
 
   const caseone=(
       <ul className="nav">
-      <li className="nav-item  p-2"><Link className="text-white h6 navbar-text" to="/">الرئيسية
-      <i className="fas fa-home"></i>
+      <li className="nav-item  p-2 nav-text-hover"><Link className="text-decoration-none h6 navbar-text  py-2 px-4" to="/">
+      <div>
+      الرئيسية <i className="fas fa-home"></i>
+      </div>
     </Link></li>
-    <li className="nav-item  p-2"><Link className="text-white h6 navbar-text" to="/about">حول الملف الطبي
-     <i className="fas fa-file-medical"></i>
+    <li className="nav-item  p-2 nav-text-hover"><Link className="text-decoration-none h6 navbar-text  py-2 px-4" to="/about">
+    <div>
+    حول الملف الطبي <i className="fas fa-file-medical"></i>
+    </div> 
     </Link></li>
-    <li className="nav-item  p-2"><Link className="text-white h6 navbar-text" to="/">تطبيق توعية
-    <i className="fas fa-mobile"></i>
+    <li className="nav-item  p-2 nav-text-hover"><Link className="text-decoration-none h6 navbar-text  py-2 px-4" to="/">
+    <div>
+    تطبيق توعية <i className="fas fa-mobile"></i>
+    </div>
     </Link></li>
-    <li className="nav-item  p-2"> <button onClick={()=>close()} className="btn btn-dark">الخروج
-    <i className="fas fa-user-lock"></i>
+    <li className="nav-item  p-2 nav-text-hover"> <button onClick={()=>close()} className="btn btn-dark">
+    <i className="fas fa-power-off"></i>
     </button></li>
     <li id="small-login-menu"></li>
     </ul>
     )
 
-const hideshowlogin_menu=()=>{
-  if(document.getElementById('small-login-menu').style.display==="block")
-  {
-    document.getElementById('small-login-menu').style.display="none"
-  }else{
-    document.getElementById('small-login-menu').style.display="block"
-  }
-}
-
-try{document.addEventListener('click',()=>{
-  document.getElementById('small-login-menu').style.display="none"
-});}catch{}
-
 
   const casetwo=
     (
       <ul className="nav">
-    <li className="nav-item  p-2"><Link className="text-white h6 navbar-text" to="/">الرئيسية
-    <i className="fas fa-home"></i>
+    <li className="nav-item  py-3 nav-text-hover"><Link className="text-decoration-none h6 navbar-text py-2 px-4 " to="/">
+     <div>الرئيسية <i className="fas fa-home"></i></div>
     </Link></li>
-    <li className="nav-item  p-2"><Link className="text-white h6 navbar-text" to="/about">حول الملف الطبي  
-    <i className="fas fa-file-medical"></i>
+    <li className="nav-item  py-3 nav-text-hover"><Link className="text-decoration-none h6 navbar-text  py-2 px-4 " to="/about">  
+    <div>
+    حول الملف الطبي <i className="fas fa-file-medical"></i>
+    </div>
     </Link></li>
-    <li className="nav-item  p-2"><Link className="text-white h6 navbar-text" to="/">تطبيق توعية
-    <i className="fas fa-mobile"></i>
+    <li className="nav-item  py-3 nav-text-hover"><Link className="text-decoration-none h6 navbar-text  py-2 px-4" to="/">
+    <div>
+    تطبيق توعية  <i className="fas fa-mobile"></i>
+    </div>
     </Link></li>
-    <li className="nav-item  p-2"><Link className="text-white h6 navbar-text" to="/medicalfile">
-    ملف جديد
-    <i className="fas fa-folder-plus"></i>
+    <li className="nav-item  py-3 nav-text-hover"><Link className="text-decoration-none h6 navbar-text  py-2 px-4" to="/medicalfile">
+    <div>
+    ملف جديد  <i className="fas fa-folder-plus"></i>
+    </div>
     </Link></li>
-    <li className="nav-item p-2 text-center login-hoverlink">
-    <button onClick={()=>hideshowlogin_menu()} className="text-white btn btn-dark h6 navbar-text login-topbar border-bottom-0" to="/userlogin">الدخول
+    <li className="nav-item p-3 text-center login-hoverlink text-decoration-none nav-text-hover ">
+    <button onClick={()=>hideshowlogin_menu()} className="text-decoration-none btn btn-dark h6 navbar-text login-topbar border-bottom-0 " to="/userlogin">الدخول
     <i className="fas fa-unlock-alt"></i>
     </button>
     <ul id="small-login-menu" className="nav position-absolute bg-dark text-white border-bottom text-center" style={{zIndex:"1",display:"none"}}>
-    <li><br/><Link className="text-white px-4" to="/userlogin">المعطيات الشخصية</Link></li>
+    <li><br/><Link className="text-white px-2" to="/userlogin">المعطيات الشخصية</Link></li>
     <br/>
-    <li><Link className="text-white px-4" to="/searchlogin"> تصفح البيانات</Link></li>
+    <li><Link className="text-white px-2" to="/searchlogin"> تصفح البيانات</Link></li>
     <br/>
     </ul>
     </li>
     </ul>
     )
 
+    const hideshowlogin_menu=()=>{
+      if(document.getElementById('small-login-menu').style.display==="block")
+      {
+        document.getElementById('small-login-menu').style.display="none"
+      }else{
+        document.getElementById('small-login-menu').style.display="block"
+      }
+    }
+    
+    try{document.addEventListener('click',()=>{
+      document.getElementById('small-login-menu').style.display="none"
+    });}catch{}
+    
+    window.onscroll=()=>{
+    let navbar = document.getElementById('navbar');
+    if(window.pageYOffset>30)
+    {
+      navbar.classList.add('secondnavbarcolor');
+    }
+    else{
+      navbar.classList.remove('secondnavbarcolor');
+    }
+    }
+
     return (
       <div>
       <Router>
-  <nav className="navbar navbar-expand-lg bg-dark justify-content-between">
-  <a className="navbar-brand text-white" href="/">
-  الملف الطبي 
-  <i className="fas fa-file-medical-alt"></i>
+  <nav id='navbar' className="navbar navbar-expand-lg bg-gray justify-content-between">
+  <a className="navbar-brand text-dark h1" href="/">
+  <div className="font-weight-bolder px-3">
+  الملف الطبي  <i className="fas fa-file-medical-alt"></i>
+  </div>
    </a>
-   <div style={{marginLeft:"40%"}}>
+   <div style={{marginLeft:"30%"}}>
    <p></p>
    </div>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <svg color="white" className="bi bi-grid-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" d="M1 2.5A1.5 1.5 0 012.5 1h3A1.5 1.5 0 017 2.5v3A1.5 1.5 0 015.5 7h-3A1.5 1.5 0 011 5.5v-3zm8 0A1.5 1.5 0 0110.5 1h3A1.5 1.5 0 0115 2.5v3A1.5 1.5 0 0113.5 7h-3A1.5 1.5 0 019 5.5v-3zm-8 8A1.5 1.5 0 012.5 9h3A1.5 1.5 0 017 10.5v3A1.5 1.5 0 015.5 15h-3A1.5 1.5 0 011 13.5v-3zm8 0A1.5 1.5 0 0110.5 9h3a1.5 1.5 0 011.5 1.5v3a1.5 1.5 0 01-1.5 1.5h-3A1.5 1.5 0 019 13.5v-3z" clip-rule="evenodd"/>
-    </svg>
+    <i className="fas fa-list"></i>
     </button>
     <div className="collapse navbar-collapse w-100 text-xl-right" id="navbarSupportedContent">
     {sessionStorage.getItem('ID')==null ? casetwo : caseone}
     </div>
     </nav>
-      
-       <Switch>
-       <Route exact path="/" component={Home}/>
-       <Route path="/adminpanel" component={adminpanel} />
       <div className="container bg-center">
       <br/>
+      <Switch>
+       <Route exact path="/" component={Home}/>
+       <Route path="/adminpanel" component={adminpanel} />
        <Route path="/medicalfile" component={Medicalfile}/>
        <Route path="/userlogin" component={Userlogin}/>
-       <Route path="/main" component={Usermain} user={user}/>
-       <Route path="/searchlogin" component={Login} doctor={doctor}/>
-       <Route path="/searchpanel" component={Mainpanel} user={userpanel}/>
+       <Route path="/main" component={Usermain}/>
+       <Route path="/searchlogin" component={Login} />
+       <Route path="/searchpanel" component={Mainpanel}/>
        <Route path="/test" component={example} />
        <Route path="/admin" component={adminlogin} />
-      </div>
-      </Switch>
+       </Switch>
+       </div>
        </Router>
       </div>
     );

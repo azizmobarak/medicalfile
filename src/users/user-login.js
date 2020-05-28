@@ -61,6 +61,8 @@ if(sessionStorage.getItem('ID')!=null)
 else{
     return(
         <div className="row medicalfil-cover">
+        <div className="col-sm-2 text-center text-white">
+        </div>
         <div className="col-sm-8 px-xl-5 text-center">
         <br/>
         <div className="h2">تسجيل الدخول</div>
@@ -85,9 +87,6 @@ else{
         </div>
         </div>
         <br/>
-        <div>
-        <Link to="/searchlogin">دخول اسثنائي</Link>
-        </div>
         <br/>
         <div className="w-100 py-lg-1">
         <button type="submit" className="btn btn-outline-success px-xl-5">الدخول</button>
@@ -97,15 +96,7 @@ else{
         </div>
         <br/>
         <br/>
-        <div className="col-sm-4 text-center text-white">
-        <div className="card bg-dark">
-        <h3>هام</h3>
-        </div>
-        <br/>
-        <div className="card bg-danger">
-        <h3>هام</h3>
-        </div>
-        <br/>
+        <div className="col-sm-2 text-center text-white">
         </div>
         </div>
     )}

@@ -77,7 +77,7 @@ else{
         <div>
         <div className="row medicalfil-cover">
          <div className="col-sm-3"></div>
-         <div className="col-sm-5">
+         <div className="col-sm-6">
          <br/>
          <h2 className="text-center text-primary">لوحة التحكم</h2>
          <form onSubmit={submithandler} className="form w-100 py-sm-4 text-center bg-transparent">
@@ -107,7 +107,7 @@ else{
             </div>
             </form>
          </div>
-         <div className="col-sm-4"></div>    
+         <div className="col-sm-3"></div>    
         </div>
         <br/><br/>
         </div>

@@ -31,6 +31,7 @@ const Home=()=>{
         </div>
         </div>
         <br/>
+    { /*<i className="fas fa-sms chatbtn"></i>*/}
         </div>
     )
 
