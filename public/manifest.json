@@ -1,6 +1,6 @@
 {
     "short_name": "medicalefile",
-    "name": "medicale file",
+    "name": "this app created to manage sickers by hospitals, users join by thier names emails and phone number email and they answer some health question and they get a notification about registring to thier emails and a special code to thier phone number. doctors or hospitals can easily look and see thier sickers health info to gain time without trying again to know neccessary infos about them",
     "icons": [{
         "src": "logo.png",
         "sizes": "64x64 32x32 24x24 16x16",
